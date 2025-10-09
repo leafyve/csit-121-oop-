@@ -1,0 +1,95 @@
+# Lab 1
+import math
+
+class Point:
+    def __init__(self, x_coord, y_coord):
+        self._x = x_coord
+        self._y = y_coord
+
+    def get_x(self):
+        return self._x
+
+    def get_y(self):
+        return self._y
+
+    def set_x(self, x_coord):
+        self._x = x_coord
+
+    def set_y(self, y_coord):
+        self._y = y_coord
+
+    def get_distance(self):
+        sum_sq = self._x ** 2 + self._y ** 2
+        return math.sqrt(sum_sq)
+
+    def __str__(self):
+        return f'[{self._x}, {self._y}]'
+
+    def __eq__(self, other):
+        return (self._x == other._x and
+                self._y == other._y)
+
+
+############################
+class Circle:
+    def __init__(self, radius, x_coord, y_coord):
+        self._radius = radius
+        self._centre = Point(x_coord, y_coord)
+
+    def get_point_on_arc(self, angle):
+        x_coord = self._radius * math.cos(angle) + self._centre.get_x()
+        y_coord = self._radius * math.sin(angle) + self._centre.get_y()
+        return Point(x_coord, y_coord)
+
+    def __str__(self):
+        return f'Circle with radius {self._radius} at {self._centre}'
+
+    def __eq__(self, other):
+        return (self._radius == other._radius and
+                self._centre == other._centre)
+
+
+############################
+def test_equal_circle():
+    c1 = Circle(1, 1, 1)
+    c2 = Circle(2, 1, 1)
+    c3 = Circle(2, 1, 1)
+    print(c1 == c2)  # False
+    print(c2 == c3)  # True
+
+
+def test_circle():
+    c1 = Circle(10, 1, 1)
+    c2 = Circle(20, 5, 10)
+    print(c1)
+    print(c2)
+
+
+def test_equal():
+    p1 = Point(1, 5)
+    p2 = Point(1, 5)
+    p3 = p2
+    print(p1 == p2)  # p1.__eq__(p2)
+    print(p2 == p3)  # p2.__eq__(p3)
+    print(p3 == p1)  # p3.__eq__(p1)
+
+
+def test_point():
+    p1 = Point(1, 5)
+    print(p1)
+    p2 = Point(-1, 10)
+    print(p2)
+    print(Point(100, 50))
+    print(p1.get_x())
+    print(p1.get_distance())
+
+
+def main():
+    # test_point()
+    # test_equal()
+    # test_circle()
+    test_equal_circle()
+    print('end')
+
+
+main()
