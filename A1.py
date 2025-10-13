@@ -1,3 +1,5 @@
+from datetime import date
+
 class Trainee:
     def __init__(self, trainee_id,name,birthdate,email):
         self.__trainee_id = trainee_id
@@ -6,7 +8,7 @@ class Trainee:
         self.__email = email
 
     def get_age(self):
-        return 2025 - self.__birthdate
+        return date.today() - self.__birthdate
 
     def __str__(self):
         return f"Trainee Id: {self.__trainee_id} Name:{self.__name} Birthdate: {self.__birthdate} Email: {self.__email}"
@@ -20,13 +22,16 @@ class Trainer:
         return f"Trainer Id: {self.__trainer_id} Name: {self.__name}"
 
 class ExerciseSession:
-    def __int__(self, session_id, duration, intensity, date):
+    def __int__(self, session_id,trainer_id,trainee_id, duration, intensity, date):
         self.__session_id = session_id
-        # to do: link the class trainer id
-        #        and trainee id
+        self.__trainer_id = trainer_id
+        self.__trainee_id = trainee_id
         self.__duration = duration
         self.__intensity = intensity
         self.__date = date
+
+    def __str__(self):
+        return f""
 
 # to do: link the 3 objects together
 class PersonalTrainingManagementSystem:
@@ -67,5 +72,6 @@ class PersonalTrainingManagementSystem:
 # need user input?
 Trainee1 = Trainee("123","Bob","2000","123@gmail.com")
 Trainer1 = Trainer("123","Alex")
+# get_age = Trainee1.get_age()
 print(Trainee1)
 print(Trainer1)
